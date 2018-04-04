@@ -18,6 +18,7 @@ struct varun
 class btree
 {   
     public:
+            int s=0;
 	varun *root;
 	btree()
 	 {
@@ -76,8 +77,8 @@ class btree
 		if(temp==NULL)
 		return;
 		display(temp->left);
-		cout<<temp->data;
-	    display(temp->right);
+		cout<<temp->data<<" ";
+	            display(temp->right);
 	    
 	}
 	
@@ -156,10 +157,33 @@ class btree
 				}
 			}
 			
-			else
+			//else 
 			
 			
 		}
+	}
+	void range(varun *temp,int k1,int k2)
+	{
+		if(temp==NULL)
+		return;
+		range(temp->left,k1,k2);
+		if(temp->data>=k1 && temp->data<=k2)
+		{
+		cout<<temp->data<<" ";
+		}
+	            range(temp->right,k1,k2);
+	}
+	
+	
+            int count(varun *temp)
+	{           
+	
+		if(temp==NULL)
+		return 0;
+		count(temp->left);
+		s++;
+	            count(temp->right);
+	            return s;
 	}
 };
 
@@ -175,6 +199,18 @@ int main()
 	a.insert(2);
 	a.search(a.root,7);
 	a.display(a.root);
+	cout<<endl;
+	a.s=0;
+	cout<<a.count(a.root);
+	cout<<endl;
 	a.deletenode(7);
 	a.display(a.root);
+	cout<<endl;
+	a.s=0;
+	cout<<a.count(a.root);
+	cout<<endl;
+	a.range(a.root,3,12);
+	cout<<endl;
+	a.s=0;
+	cout<<a.count(a.root);
 }
